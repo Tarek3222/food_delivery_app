@@ -10,8 +10,8 @@ import 'package:food_delivery_app/features/cart/data/local_services/hive_helper.
 import 'package:food_delivery_app/features/cart/logic/cart_cubit/cart_cubit.dart';
 import 'package:food_delivery_app/features/cart/logic/set_quantity_cubit/set_quantity_cubit.dart';
 import 'package:food_delivery_app/features/home/data/models/popular_products_model.dart';
-import 'package:food_delivery_app/features/home/views/widgets/add_product_bloc_listener.dart';
-import 'package:food_delivery_app/features/home/views/widgets/recommended_product_price_and_two_buttons.dart';
+import 'package:food_delivery_app/features/home/views/widgets/popular_details_widgets/add_product_bloc_listener.dart';
+import 'package:food_delivery_app/features/home/views/widgets/recommended_details_widgets/recommended_product_price_and_two_buttons.dart';
 
 class BuildRecommendedProductBottomNavBar extends StatelessWidget {
   const BuildRecommendedProductBottomNavBar({
@@ -54,23 +54,27 @@ class BuildRecommendedProductBottomNavBar extends StatelessWidget {
                 child: Icon(Icons.favorite,
                     color: AppColors.mainColor, size: 24.h),
               ),
-              InkWell(
-                onTap: () {
-                  setupAddNewProductToCart(context);
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(15).r,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20).w,
-                    color: AppColors.mainColor,
+              Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      setupAddNewProductToCart(context);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(15).r,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20).w,
+                        color: AppColors.mainColor,
+                      ),
+                      child: BigText(
+                        text: "\$${recommendedProduct.price} | Add to cart",
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
-                  child: BigText(
-                    text: "\$${recommendedProduct.price} | Add to cart",
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              const AddProductBlocListener(),
+                  const AddProductBlocListener(),
+                ],
+              )
             ],
           ),
         )

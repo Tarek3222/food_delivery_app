@@ -14,11 +14,11 @@ import 'package:food_delivery_app/features/cart/logic/set_quantity_cubit/set_qua
 import 'package:food_delivery_app/features/home/data/models/popular_products_model.dart';
 import 'package:food_delivery_app/features/home/views/widgets/column_food_info.dart';
 import 'package:food_delivery_app/features/home/views/widgets/expandable_text.dart';
-import 'package:food_delivery_app/features/home/views/widgets/quantitiy_and_add_to_cart_container.dart';
+import 'package:food_delivery_app/features/home/views/widgets/popular_details_widgets/quantitiy_and_add_to_cart_container.dart';
 
-class PopularFoodDetails extends StatelessWidget {
+class PopularFoodDetailsView extends StatelessWidget {
   final PopularProduct popularModel;
-  const PopularFoodDetails({super.key, required this.popularModel});
+  const PopularFoodDetailsView({super.key, required this.popularModel});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,9 @@ class PopularFoodDetails extends StatelessWidget {
                     return AppIcon(
                       icon: Icons.shopping_cart,
                       child: Badge.count(
-                        count: context.read<CartCubit>().totalQuantity,
+                        count: state is GetNumberOfQuantityState
+                            ? state.totalQuantity
+                            : 0,
                         backgroundColor: AppColors.mainColor,
                         child: const Icon(
                           Icons.shopping_cart,

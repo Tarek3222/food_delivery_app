@@ -9,9 +9,9 @@ import 'package:food_delivery_app/features/cart/data/local_services/hive_constan
 import 'package:food_delivery_app/features/cart/data/local_services/hive_helper.dart';
 import 'package:food_delivery_app/features/cart/logic/cart_cubit/cart_cubit.dart';
 import 'package:food_delivery_app/features/cart/logic/set_quantity_cubit/set_quantity_cubit.dart';
-import 'package:food_delivery_app/features/cart/logic/set_quantity_cubit/set_quantity_state.dart';
 import 'package:food_delivery_app/features/home/data/models/popular_products_model.dart';
-import 'package:food_delivery_app/features/home/views/widgets/add_product_bloc_listener.dart';
+import 'package:food_delivery_app/features/home/views/widgets/popular_details_widgets/add_product_bloc_listener.dart';
+import 'package:food_delivery_app/features/home/views/widgets/popular_details_widgets/build_add_remove_quantity_buttons.dart';
 
 class QuantityAndAddToCartContainer extends StatelessWidget {
   const QuantityAndAddToCartContainer({
@@ -39,59 +39,7 @@ class QuantityAndAddToCartContainer extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            padding: const EdgeInsets.all(10).r,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20).w,
-              color: Colors.white,
-            ),
-            child: Row(
-              children: [
-                InkWell(
-                  onTap: () {
-                    context.read<SetQuantityCubit>().setQuantity(false);
-                  },
-                  child: const Icon(
-                    Icons.remove,
-                    color: AppColors.signColor,
-                  ),
-                ),
-                horizontalSpace(5),
-                BlocConsumer<SetQuantityCubit, SetQuantityState>(
-                  buildWhen: (previous, current) =>
-                      current is SetQuantityChanged,
-                  listenWhen: (previous, current) =>
-                      current is SetQuantityMax || current is SetQuantityMin,
-                  listener: (context, state) {
-                    if (state is SetQuantityMax) {
-                      showTopSnackBar(
-                          context, "You can't increase more than 20",
-                          color: Colors.red);
-                    } else if (state is SetQuantityMin) {
-                      showTopSnackBar(context, "You can't reduce less than 0",
-                          color: Colors.red);
-                    }
-                  },
-                  builder: (context, state) {
-                    return BigText(
-                      text: "${context.read<SetQuantityCubit>().quantity}",
-                      color: AppColors.mainBlackColor,
-                    );
-                  },
-                ),
-                horizontalSpace(5),
-                InkWell(
-                  onTap: () {
-                    context.read<SetQuantityCubit>().setQuantity(true);
-                  },
-                  child: const Icon(
-                    Icons.add,
-                    color: AppColors.signColor,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          const BuildAddRemoveQuantityButtons(),
           horizontalSpace(10),
           const AddProductBlocListener(),
           InkWell(

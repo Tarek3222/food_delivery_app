@@ -1,6 +1,8 @@
 import 'package:food_delivery_app/features/cart/data/models/cart_model.dart';
 
-class CartState {}
+class CartState {
+  const CartState();
+}
 
 class CartInitial extends CartState {}
 
@@ -41,5 +43,5 @@ class GetProductsFromCartError extends CartState {
 class GetNumberOfQuantityState extends CartState {
   final int totalQuantity;
 
-  GetNumberOfQuantityState(this.totalQuantity);
+  const GetNumberOfQuantityState(this.totalQuantity);
 }

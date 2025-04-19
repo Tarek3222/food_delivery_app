@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_app/core/helpers/extensions.dart';
 import 'package:food_delivery_app/core/theme/app_colors.dart';
 import 'package:food_delivery_app/core/widgets/app_icon.dart';
 
@@ -24,7 +25,10 @@ class CartAppBar extends StatelessWidget {
         ),
         AppIcon(
           icon: Icons.home,
-          onPressed: () {},
+          onPressed: () {
+            context.pop();
+            context.pop();
+          },
           iconColor: Colors.white,
           backgroundColor: AppColors.mainColor,
           size: 24.h,

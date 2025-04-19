@@ -3,7 +3,7 @@ import 'package:food_delivery_app/core/routing/routes.dart';
 import 'package:food_delivery_app/features/cart/ui/cart_view.dart';
 import 'package:food_delivery_app/features/home/data/models/popular_products_model.dart';
 import 'package:food_delivery_app/features/home/views/main_food_view.dart';
-import 'package:food_delivery_app/features/home/views/popular_food_details.dart';
+import 'package:food_delivery_app/features/home/views/popular_food_details_view.dart';
 import 'package:food_delivery_app/features/home/views/recommended_food_details.dart';
 
 class AppRouter {
@@ -15,7 +15,7 @@ class AppRouter {
         );
       case Routes.popularFoodDetails:
         return MaterialPageRoute(
-          builder: (_) => PopularFoodDetails(
+          builder: (_) => PopularFoodDetailsView(
             popularModel: settings.arguments as PopularProduct,
           ),
         );

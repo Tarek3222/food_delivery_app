@@ -12,7 +12,7 @@ import 'package:food_delivery_app/features/cart/logic/cart_cubit/cart_cubit.dart
 import 'package:food_delivery_app/features/cart/logic/cart_cubit/cart_state.dart';
 import 'package:food_delivery_app/features/cart/logic/set_quantity_cubit/set_quantity_cubit.dart';
 import 'package:food_delivery_app/features/home/data/models/popular_products_model.dart';
-import 'package:food_delivery_app/features/home/views/widgets/build_recommended_product_bottom_nav_bar.dart';
+import 'package:food_delivery_app/features/home/views/widgets/recommended_details_widgets/build_recommended_product_bottom_nav_bar.dart';
 import 'package:food_delivery_app/features/home/views/widgets/expandable_text.dart';
 
 class RecommendedFoodDetails extends StatelessWidget {
@@ -26,72 +26,7 @@ class RecommendedFoodDetails extends StatelessWidget {
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            backgroundColor: AppColors.yellowColor,
-            expandedHeight: 300.h,
-            automaticallyImplyLeading: false,
-            pinned: true,
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                AppIcon(
-                    icon: Icons.clear,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }),
-                BlocBuilder<CartCubit, CartState>(
-                  buildWhen: (previous, current) =>
-                      current is GetNumberOfQuantityState,
-                  builder: (context, state) {
-                    return AppIcon(
-                      icon: Icons.shopping_cart,
-                      child: Badge.count(
-                        count: context.read<CartCubit>().totalQuantity,
-                        backgroundColor: AppColors.mainColor,
-                        child: const Icon(
-                          Icons.shopping_cart,
-                          color: Color(0xFF756d54),
-                          size: 20,
-                        ),
-                      ),
-                      onPressed: () {
-                        context.pushNamed(Routes.cartScreen);
-                      },
-                    );
-                  },
-                ),
-              ],
-            ),
-            flexibleSpace: FlexibleSpaceBar(
-              background: CachedNetworkImage(
-                imageUrl:
-                    "${ApiConstants.baseImageUrl}${recommendedProduct.imageUrl}",
-                fit: BoxFit.cover,
-                placeholder: (context, url) => const Center(
-                  child: CircularProgressIndicator(),
-                ),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-              ),
-            ),
-            bottom: PreferredSize(
-              preferredSize: Size.fromHeight(50.h),
-              child: Container(
-                width: double.maxFinite,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40.r),
-                    topRight: Radius.circular(40.r),
-                  ),
-                ),
-                child: BigText(
-                    text: recommendedProduct.name ?? "Food Name",
-                    color: Colors.black,
-                    size: 24),
-              ),
-            ),
-          ),
+          buildSliverAppBatr(context),
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.only(left: 20, right: 20, top: 20).r,
@@ -107,6 +42,77 @@ class RecommendedFoodDetails extends StatelessWidget {
         create: (context) => SetQuantityCubit(),
         child: BuildRecommendedProductBottomNavBar(
             recommendedProduct: recommendedProduct),
+      ),
+    );
+  }
+
+  SliverAppBar buildSliverAppBatr(BuildContext context) {
+    return SliverAppBar(
+      backgroundColor: AppColors.yellowColor,
+      expandedHeight: 300.h,
+      automaticallyImplyLeading: false,
+      pinned: true,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          AppIcon(
+              icon: Icons.clear,
+              onPressed: () {
+                Navigator.pop(context);
+              }),
+          BlocBuilder<CartCubit, CartState>(
+            buildWhen: (previous, current) =>
+                current is GetNumberOfQuantityState,
+            builder: (context, state) {
+              return AppIcon(
+                icon: Icons.shopping_cart,
+                child: Badge.count(
+                  count: state is GetNumberOfQuantityState
+                      ? state.totalQuantity
+                      : 0,
+                  backgroundColor: AppColors.mainColor,
+                  child: const Icon(
+                    Icons.shopping_cart,
+                    color: Color(0xFF756d54),
+                    size: 20,
+                  ),
+                ),
+                onPressed: () {
+                  context.pushNamed(Routes.cartScreen);
+                },
+              );
+            },
+          ),
+        ],
+      ),
+      flexibleSpace: FlexibleSpaceBar(
+        background: CachedNetworkImage(
+          imageUrl:
+              "${ApiConstants.baseImageUrl}${recommendedProduct.imageUrl}",
+          fit: BoxFit.cover,
+          placeholder: (context, url) => const Center(
+            child: CircularProgressIndicator(),
+          ),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
+        ),
+      ),
+      bottom: PreferredSize(
+        preferredSize: Size.fromHeight(50.h),
+        child: Container(
+          width: double.maxFinite,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(40.r),
+              topRight: Radius.circular(40.r),
+            ),
+          ),
+          child: BigText(
+              text: recommendedProduct.name ?? "Food Name",
+              color: Colors.black,
+              size: 24),
+        ),
       ),
     );
   }

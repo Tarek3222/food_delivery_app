@@ -7,8 +7,6 @@ import 'package:food_delivery_app/features/home/data/models/popular_products_mod
 
 class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartInitial());
-  int _totalQuantity = 0;
-  int get totalQuantity => _totalQuantity;
   // add Product to Cart
   Future<void> addProductToCart(PopularProduct product, int quantity) async {
     emit(AddProductToCartLoading());
@@ -61,8 +59,8 @@ class CartCubit extends Cubit<CartState> {
   // get number of quantity
   void getNumberOfQuantity() {
     List<CartModel> cartProducts = HiveService.getItemsInCart(kCartBox);
-    _totalQuantity = cartProducts.fold(
+    int totalQuantity = cartProducts.fold(
         0, (previousValue, element) => previousValue + element.quantity!);
-    emit(GetNumberOfQuantityState(_totalQuantity));
+    emit(GetNumberOfQuantityState(totalQuantity));
   }
 }

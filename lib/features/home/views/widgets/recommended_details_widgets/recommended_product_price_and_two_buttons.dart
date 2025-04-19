@@ -29,27 +29,7 @@ class RecommendedProductPriceAndTwoButtons extends StatelessWidget {
           iconColor: Colors.white,
           backgroundColor: AppColors.mainColor,
         ),
-        BlocConsumer<SetQuantityCubit, SetQuantityState>(
-          buildWhen: (previous, current) => current is SetQuantityChanged,
-          listenWhen: (previous, current) =>
-              current is SetQuantityMax || current is SetQuantityMin,
-          listener: (context, state) {
-            if (state is SetQuantityMax) {
-              showTopSnackBar(context, "You can't increase more than 20",
-                  color: Colors.red);
-            } else if (state is SetQuantityMin) {
-              showTopSnackBar(context, "You can't reduce less than 0",
-                  color: Colors.red);
-            }
-          },
-          builder: (context, state) {
-            return BigText(
-                text:
-                    " \$${recommendedProduct.price} X ${context.read<SetQuantityCubit>().quantity}",
-                color: AppColors.mainBlackColor,
-                size: 24);
-          },
-        ),
+        buildPriceTextAndChangeQuantityBlocConsumer(),
         AppIcon(
           icon: Icons.add,
           onPressed: () {
@@ -59,6 +39,30 @@ class RecommendedProductPriceAndTwoButtons extends StatelessWidget {
           backgroundColor: AppColors.mainColor,
         ),
       ],
+    );
+  }
+
+  Widget buildPriceTextAndChangeQuantityBlocConsumer() {
+    return BlocConsumer<SetQuantityCubit, SetQuantityState>(
+      buildWhen: (previous, current) => current is SetQuantityChanged,
+      listenWhen: (previous, current) =>
+          current is SetQuantityMax || current is SetQuantityMin,
+      listener: (context, state) {
+        if (state is SetQuantityMax) {
+          showTopSnackBar(context, "You can't increase more than 20",
+              color: Colors.red);
+        } else if (state is SetQuantityMin) {
+          showTopSnackBar(context, "You can't reduce less than 0",
+              color: Colors.red);
+        }
+      },
+      builder: (context, state) {
+        return BigText(
+            text:
+                " \$${recommendedProduct.price} X ${context.read<SetQuantityCubit>().quantity}",
+            color: AppColors.mainBlackColor,
+            size: 24);
+      },
     );
   }
 }
