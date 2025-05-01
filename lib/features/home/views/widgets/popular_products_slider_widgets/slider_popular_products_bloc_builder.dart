@@ -31,7 +31,7 @@ class SliderPopularProductsBlocBuilder extends StatelessWidget {
   }
 
   Widget setupSuccess(popularProductsSuccess state, BuildContext context) {
-    List<PopularProduct> popularProducts = state.popularProducts;
+    List<ProductModel> popularProducts = state.popularProducts;
     return SliderPopularProductsPageViewAndDotsIndecator(
       popularProducts: popularProducts,
     );

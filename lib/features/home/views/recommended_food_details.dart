@@ -17,7 +17,7 @@ import 'package:food_delivery_app/features/home/views/widgets/expandable_text.da
 
 class RecommendedFoodDetails extends StatelessWidget {
   const RecommendedFoodDetails({super.key, required this.recommendedProduct});
-  final PopularProduct recommendedProduct;
+  final ProductModel recommendedProduct;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +78,10 @@ class RecommendedFoodDetails extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  context.pushNamed(Routes.cartScreen);
+                  context.pushReplacementNamed(Routes.cartScreen, arguments: {
+                    "productModel": recommendedProduct,
+                    "productType": "recommended",
+                  });
                 },
               );
             },

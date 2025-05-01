@@ -12,7 +12,7 @@ import 'package:food_delivery_app/features/home/data/models/popular_products_mod
 class BuildRecommendedListViewItem extends StatelessWidget {
   const BuildRecommendedListViewItem(
       {super.key, required this.recommendedProduct});
-  final PopularProduct recommendedProduct;
+  final ProductModel recommendedProduct;
   @override
   Widget build(BuildContext context) {
     return Padding(

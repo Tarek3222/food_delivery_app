@@ -15,7 +15,7 @@ class BuildPageViewItem extends StatelessWidget {
       required this.popularProduct});
   final int index;
   final double currentPageValue;
-  final PopularProduct popularProduct;
+  final ProductModel popularProduct;
   @override
   Widget build(BuildContext context) {
     Matrix4 matrix = Matrix4.identity();

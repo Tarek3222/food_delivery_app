@@ -9,7 +9,7 @@ class GetPopularProductsState with _$GetPopularProductsState {
   const factory GetPopularProductsState.popularProductsLoading() =
       PopularProductsLoading;
   const factory GetPopularProductsState.popularProductsSuccess({
-    required List<PopularProduct> popularProducts,
+    required List<ProductModel> popularProducts,
   }) = popularProductsSuccess;
   const factory GetPopularProductsState.popularProductsError({
     required String errorMessage,

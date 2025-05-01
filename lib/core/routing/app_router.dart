@@ -16,18 +16,23 @@ class AppRouter {
       case Routes.popularFoodDetails:
         return MaterialPageRoute(
           builder: (_) => PopularFoodDetailsView(
-            popularModel: settings.arguments as PopularProduct,
+            popularModel: settings.arguments as ProductModel,
           ),
         );
       case Routes.recommendedFoodDetails:
         return MaterialPageRoute(
           builder: (_) => RecommendedFoodDetails(
-            recommendedProduct: settings.arguments as PopularProduct,
+            recommendedProduct: settings.arguments as ProductModel,
           ),
         );
       case Routes.cartScreen:
+        var data = settings.arguments as Map<String, dynamic>;
+
         return MaterialPageRoute(
-          builder: (_) => const CartView(),
+          builder: (_) => CartView(
+            productModel: data['productModel'] as ProductModel,
+            productType: data['productType'] as String,
+          ),
         );
 
       default:

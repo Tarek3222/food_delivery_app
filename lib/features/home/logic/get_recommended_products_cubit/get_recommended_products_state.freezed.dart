@@ -82,11 +82,11 @@ class RecommendedProductsLoading implements GetRecommendedProductsState {
 
 class RecommendedProductsSuccess implements GetRecommendedProductsState {
   const RecommendedProductsSuccess(
-      {required final List<PopularProduct> recommendedProducts})
+      {required final List<ProductModel> recommendedProducts})
       : _recommendedProducts = recommendedProducts;
 
-  final List<PopularProduct> _recommendedProducts;
-  List<PopularProduct> get recommendedProducts {
+  final List<ProductModel> _recommendedProducts;
+  List<ProductModel> get recommendedProducts {
     if (_recommendedProducts is EqualUnmodifiableListView)
       return _recommendedProducts;
     // ignore: implicit_dynamic_type
@@ -128,7 +128,7 @@ abstract mixin class $RecommendedProductsSuccessCopyWith<$Res>
           $Res Function(RecommendedProductsSuccess) _then) =
       _$RecommendedProductsSuccessCopyWithImpl;
   @useResult
-  $Res call({List<PopularProduct> recommendedProducts});
+  $Res call({List<ProductModel> recommendedProducts});
 }
 
 /// @nodoc
@@ -149,7 +149,7 @@ class _$RecommendedProductsSuccessCopyWithImpl<$Res>
       recommendedProducts: null == recommendedProducts
           ? _self._recommendedProducts
           : recommendedProducts // ignore: cast_nullable_to_non_nullable
-              as List<PopularProduct>,
+              as List<ProductModel>,
     ));
   }
 }

@@ -1,4 +1,9 @@
+// ignore_for_file: deprecated_member_use
+
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioFactory {
@@ -15,7 +20,14 @@ class DioFactory {
       dio!
         ..options.connectTimeout = timeOut
         ..options.receiveTimeout = timeOut;
-      addDioHeaders();
+      // addDioHeaders();
+      // // Bypass bad SSL certificates (only for dev/testing!)
+      // (dio!.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+      //     (HttpClient client) {
+      //   client.badCertificateCallback =
+      //       (X509Certificate cert, String host, int port) => true;
+      //   return client;
+      // };
       addDioInterceptor();
       return dio!;
     } else {

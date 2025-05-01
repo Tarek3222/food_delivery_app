@@ -45,3 +45,10 @@ class GetNumberOfQuantityState extends CartState {
 
   const GetNumberOfQuantityState(this.totalQuantity);
 }
+
+// get total price state
+class GetTotalPriceState extends CartState {
+  final double totalPrice;
+
+  const GetTotalPriceState(this.totalPrice);
+}

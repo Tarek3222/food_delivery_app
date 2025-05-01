@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +18,7 @@ import 'package:food_delivery_app/features/home/views/widgets/expandable_text.da
 import 'package:food_delivery_app/features/home/views/widgets/popular_details_widgets/quantitiy_and_add_to_cart_container.dart';
 
 class PopularFoodDetailsView extends StatelessWidget {
-  final PopularProduct popularModel;
+  final ProductModel popularModel;
   const PopularFoodDetailsView({super.key, required this.popularModel});
 
   @override
@@ -30,16 +31,13 @@ class PopularFoodDetailsView extends StatelessWidget {
           Positioned(
             left: 0,
             right: 0,
-            child: Container(
+            child: SizedBox(
               width: double.maxFinite,
               height: 350.h,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
+              child: CachedNetworkImage(
+                fit: BoxFit.cover,
+                imageUrl:
                     "${ApiConstants.baseImageUrl}${popularModel.imageUrl}",
-                  ),
-                ),
               ),
             ),
           ),
@@ -74,7 +72,11 @@ class PopularFoodDetailsView extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        context.pushNamed(Routes.cartScreen);
+                        context.pushReplacementNamed(Routes.cartScreen,
+                            arguments: {
+                              "productModel": popularModel,
+                              "productType": "popular",
+                            });
                       },
                     );
                   },

@@ -31,7 +31,7 @@ class BuildRecommendedProductsBlocBuilder extends StatelessWidget {
   }
 
   Widget setupSuccess(RecommendedProductsSuccess state) {
-    List<PopularProduct> recommendedProducts = state.recommendedProducts;
+    List<ProductModel> recommendedProducts = state.recommendedProducts;
     return BuildRecommendedProductsListView(
         recommendedProducts: recommendedProducts);
   }

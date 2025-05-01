@@ -9,7 +9,7 @@ part of 'popular_products_model.dart';
 ProductsListModel _$ProductsListModelFromJson(Map<String, dynamic> json) =>
     ProductsListModel(
       products: (json['products'] as List<dynamic>?)
-          ?.map((e) => PopularProduct.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -18,8 +18,8 @@ Map<String, dynamic> _$ProductsListModelToJson(ProductsListModel instance) =>
       'products': instance.products,
     };
 
-PopularProduct _$PopularProductFromJson(Map<String, dynamic> json) =>
-    PopularProduct(
+ProductModel _$PopularProductFromJson(Map<String, dynamic> json) =>
+    ProductModel(
       stars: (json['stars'] as num?)?.toInt(),
       location: json['location'] as String?,
       createdAt: json['created_at'] as String?,
@@ -32,7 +32,7 @@ PopularProduct _$PopularProductFromJson(Map<String, dynamic> json) =>
       imageUrl: json['img'] as String?,
     );
 
-Map<String, dynamic> _$PopularProductToJson(PopularProduct instance) =>
+Map<String, dynamic> _$PopularProductToJson(ProductModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

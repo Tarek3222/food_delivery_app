@@ -15,7 +15,7 @@ class SliderPopularProductsPageView extends StatelessWidget {
 
   final PageController pageController;
   final double currentPageValue;
-  final List<PopularProduct> popularProducts;
+  final List<ProductModel> popularProducts;
 
   @override
   Widget build(BuildContext context) {

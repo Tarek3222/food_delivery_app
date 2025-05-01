@@ -10,7 +10,7 @@ class BuildRecommendedProductsListView extends StatelessWidget {
     required this.recommendedProducts,
   });
 
-  final List<PopularProduct> recommendedProducts;
+  final List<ProductModel> recommendedProducts;
 
   @override
   Widget build(BuildContext context) {

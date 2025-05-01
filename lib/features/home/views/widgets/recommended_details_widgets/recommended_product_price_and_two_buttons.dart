@@ -14,7 +14,7 @@ class RecommendedProductPriceAndTwoButtons extends StatelessWidget {
     required this.recommendedProduct,
   });
 
-  final PopularProduct recommendedProduct;
+  final ProductModel recommendedProduct;
 
   @override
   Widget build(BuildContext context) {

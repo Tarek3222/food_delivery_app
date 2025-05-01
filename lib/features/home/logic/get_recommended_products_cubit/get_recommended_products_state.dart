@@ -9,7 +9,7 @@ class GetRecommendedProductsState with _$GetRecommendedProductsState {
   const factory GetRecommendedProductsState.recommendedProductsLoading() =
       RecommendedProductsLoading;
   const factory GetRecommendedProductsState.recommendedProductsSuccess({
-    required List<PopularProduct> recommendedProducts,
+    required List<ProductModel> recommendedProducts,
   }) = RecommendedProductsSuccess;
   const factory GetRecommendedProductsState.recommendedProductsError({
     required String errorMessage,

@@ -6,7 +6,7 @@ import 'package:food_delivery_app/features/home/views/widgets/popular_products_s
 class SliderPopularProductsPageViewAndDotsIndecator extends StatefulWidget {
   const SliderPopularProductsPageViewAndDotsIndecator(
       {super.key, required this.popularProducts});
-  final List<PopularProduct> popularProducts;
+  final List<ProductModel> popularProducts;
 
   @override
   State<SliderPopularProductsPageViewAndDotsIndecator> createState() =>

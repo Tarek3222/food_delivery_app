@@ -80,11 +80,11 @@ class PopularProductsLoading implements GetPopularProductsState {
 
 class popularProductsSuccess implements GetPopularProductsState {
   const popularProductsSuccess(
-      {required final List<PopularProduct> popularProducts})
+      {required final List<ProductModel> popularProducts})
       : _popularProducts = popularProducts;
 
-  final List<PopularProduct> _popularProducts;
-  List<PopularProduct> get popularProducts {
+  final List<ProductModel> _popularProducts;
+  List<ProductModel> get popularProducts {
     if (_popularProducts is EqualUnmodifiableListView) return _popularProducts;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_popularProducts);
@@ -124,7 +124,7 @@ abstract mixin class $popularProductsSuccessCopyWith<$Res>
           $Res Function(popularProductsSuccess) _then) =
       _$popularProductsSuccessCopyWithImpl;
   @useResult
-  $Res call({List<PopularProduct> popularProducts});
+  $Res call({List<ProductModel> popularProducts});
 }
 
 /// @nodoc
@@ -145,7 +145,7 @@ class _$popularProductsSuccessCopyWithImpl<$Res>
       popularProducts: null == popularProducts
           ? _self._popularProducts
           : popularProducts // ignore: cast_nullable_to_non_nullable
-              as List<PopularProduct>,
+              as List<ProductModel>,
     ));
   }
 }

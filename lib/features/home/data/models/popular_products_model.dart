@@ -4,7 +4,7 @@ part 'popular_products_model.g.dart';
 
 @JsonSerializable()
 class ProductsListModel {
-  List<PopularProduct>? products;
+  List<ProductModel>? products;
 
   ProductsListModel({this.products});
 
@@ -15,7 +15,7 @@ class ProductsListModel {
 }
 
 @JsonSerializable()
-class PopularProduct {
+class ProductModel {
   int? id;
   String? name;
   String? description;
@@ -31,7 +31,7 @@ class PopularProduct {
   @JsonKey(name: 'type_id')
   int? typeId;
 
-  PopularProduct({
+  ProductModel({
     this.stars,
     this.location,
     this.createdAt,
@@ -44,7 +44,7 @@ class PopularProduct {
     this.imageUrl,
   });
 
-  factory PopularProduct.fromJson(Map<String, dynamic> json) =>
+  factory ProductModel.fromJson(Map<String, dynamic> json) =>
       _$PopularProductFromJson(json);
 
   Map<String, dynamic> toJson() => _$PopularProductToJson(this);
